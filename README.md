@@ -2,18 +2,23 @@
 
 Addon de proveedores para **Nuvio Media Hub**.
 
-## Proveedor configurado
+## Proveedor
 
 | Proveedor | Web | Estado |
 |---|---|---|
-| EstrenosCinesaa | https://www.estrenoscinesaa.com/ | Plantilla inicial; integración pendiente |
+| EstrenosCinesaa | https://www.estrenoscinesaa.com/ | Búsqueda WordPress y resolución de vídeos de YouTube permitidos |
 
-El repositorio se ha reducido intencionadamente a un único proveedor. Se podrán añadir otros más adelante.
+## Funcionamiento
 
-## Testing
+El proveedor implementa `getStreams(tmdbId, mediaType, season, episode)`. Busca el identificador TMDB en la búsqueda REST de WordPress del sitio, abre los resultados internos y recoge únicamente reproductores de YouTube / YouTube-nocookie.
 
-La integración de EstrenosCinesaa aún no está implementada, por lo que el proveedor de momento devuelve una lista vacía. Las instrucciones de prueba se añadirán cuando esté lista la integración.
+**Limitación:** esta integración puede devolver tráileres alojados en YouTube. No extrae enlaces de UqLoad, StreamTape, Playmogo ni otros alojamientos externos, y no garantiza encontrar una película o episodio completo. Si la búsqueda de WordPress no indexa el TMDB ID, devuelve una lista vacía.
 
-## Compatibilidad
+## Prueba manual
 
-El proyecto conserva la estructura base de Nuvio y su objetivo de compatibilidad con Hermes JS / FireTV.
+```bash
+node test.js 550 movie estrenoscinesa
+node test.js 1396 tv 1 1 estrenoscinesa
+```
+
+La implementación se ha añadido sin ejecutar pruebas de integración, por petición del usuario. Compatibilidad objetivo: Hermes JS / FireTV.
