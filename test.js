@@ -12,16 +12,16 @@ const mediaType = process.argv[3] || 'movie';
 
 let season = null;
 let episode = null;
-let providerName = 'lamovie';
+let providerName = 'estrenoscinesa';
 
 // Detectar los argumentos según si es película o serie
 if (mediaType === 'tv') {
   season = process.argv[4] ? parseInt(process.argv[4]) : null;
   episode = process.argv[5] ? parseInt(process.argv[5]) : null;
-  providerName = process.argv[6] || 'lamovie';
+  providerName = process.argv[6] || 'estrenoscinesa';
 } else {
   // Para películas, el proveedor va directamente en la 4ta posición
-  providerName = process.argv[4] || 'lamovie';
+  providerName = process.argv[4] || 'estrenoscinesa';
 }
 
 console.log(`\nTesting ${providerName} provider...`);
